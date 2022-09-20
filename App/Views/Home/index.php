@@ -39,9 +39,9 @@ foreach ($result as $row => $value) {
         <td><?=$value['lastName']?> </td>
         <td><?=$value['dob']?></td>
         <td><?=$value['salary']?></td>
-        <td id="clean"><form action="edit.php" method="POST" id="tablebtn">
+        <td id="clean"><form action="edit.php" method="GET" id="tablebtn">
             <button name="id" value="<?=$value['id'];?>">Edit</button></form></td>
-        <td id="clean"><form action="delete.php" method="POST" id="tablebtn">
+        <td id="clean"><form action="delete.php" method="GET" id="tablebtn">
             <button name="id" value="<?=$value['id'];?>">Delete</button></form></td>
     </tr>
     <?php

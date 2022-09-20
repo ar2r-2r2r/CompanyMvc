@@ -8,7 +8,7 @@
 </head>
 <body>
     Add Employee
-    <form action="" method="POST">
+    <form action="" method="GET">
         Enter first name <input type="text" name="firstName" required><br>
         Enter last name<input type="text" name="lastName" required><br>
         Enter date of birth<input type="date" name="dob" required><br>

@@ -27,6 +27,7 @@ abstract class Model
         return $result;
     }
     public function sortAscDB(string $column){
+        
         $result = $this->db->query("SELECT * FROM `".$this->table."` ORDER BY " . $column . " ASC ");
         return $result;
     }

@@ -16,12 +16,12 @@ class EmployeeController extends \Core\Controller
      */
     public function addAction()
     {
-        if (isset($_POST['firstName'])) { //если были переданы данные, то заносим их в бд
+        if (isset($_GET['firstName'])) { //если были переданы данные, то заносим их в бд
             $employee = new Employee();
-            $firstName = $_POST['firstName'];
-            $lastName = $_POST['lastName'];
-            $dob = $_POST['dob'];
-            $salary = $_POST['salary'];
+            $firstName = $_GET['firstName'];
+            $lastName = $_GET['lastName'];
+            $dob = $_GET['dob'];
+            $salary = $_GET['salary'];
             $employee->setAll($firstName, $lastName, $dob, $salary); //отправляем данные в бд
             header('Location: ../public/index.php');
         } else { //если данные ещё не были переданы, то загружаем рендер страницы
@@ -32,17 +32,17 @@ class EmployeeController extends \Core\Controller
     public function editAction()
     {
 
-        if (isset($_POST['firstName'])) { //если были переданы данные, то заносим их в бд
+        if (isset($_GET['firstName'])) { //если были переданы данные, то заносим их в бд
             $employee = new Employee();
-            $firstName = $_POST['firstName'];
-            $lastName = $_POST['lastName'];
-            $dob = $_POST['dob'];
-            $salary = $_POST['salary'];
-            $id = $_POST['id'];
+            $firstName = $_GET['firstName'];
+            $lastName = $_GET['lastName'];
+            $dob = $_GET['dob'];
+            $salary = $_GET['salary'];
+            $id = $_GET['id'];
             $employee->edit($id, $firstName, $lastName, $dob, $salary); //отправляем данные в бд
             header('Location: ../public/index.php');
         } else { //если данные ещё не были переданы, то загружаем рендер страницы
-            $id = $_POST['id'];
+            $id = $_GET['id'];
             View::render('Edit/Edit.php', [
                 'id' => $id,
             ]);
@@ -52,10 +52,10 @@ class EmployeeController extends \Core\Controller
     public function deleteAction()
     {
 
-        if (isset($_POST['id'])) { //если были переданы данные, то заносим их в бд
+        if (isset($_GET['id'])) { //если были переданы данные, то заносим их в бд
             $employee = new Employee();
 
-            $employee->delete($_POST['id']); //отправляем данные в бд
+            $employee->delete($_GET['id']); //отправляем данные в бд
             header('Location: ../public/index.php');
         }
 
