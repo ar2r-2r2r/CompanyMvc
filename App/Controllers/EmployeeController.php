@@ -18,10 +18,10 @@ class EmployeeController extends \Core\Controller
     {
         if (isset($_GET['firstName'])) { //если были переданы данные, то заносим их в бд
             $employee = new Employee();
-            $firstName = $_GET['firstName'];
-            $lastName = $_GET['lastName'];
-            $dob = $_GET['dob'];
-            $salary = $_GET['salary'];
+            $firstName = htmlspecialchars($_GET['firstName']);
+            $lastName = htmlspecialchars($_GET['lastName']);
+            $dob = htmlspecialchars($_GET['dob']);
+            $salary = htmlspecialchars($_GET['salary']);
             $employee->setAll($firstName, $lastName, $dob, $salary); //отправляем данные в бд
             header('Location: ../public/index.php');
         } else { //если данные ещё не были переданы, то загружаем рендер страницы
@@ -34,11 +34,11 @@ class EmployeeController extends \Core\Controller
 
         if (isset($_GET['firstName'])) { //если были переданы данные, то заносим их в бд
             $employee = new Employee();
-            $firstName = $_GET['firstName'];
-            $lastName = $_GET['lastName'];
-            $dob = $_GET['dob'];
-            $salary = $_GET['salary'];
-            $id = $_GET['id'];
+            $firstName = htmlspecialchars($_GET['firstName']);
+            $lastName = htmlspecialchars($_GET['lastName']);
+            $dob = htmlspecialchars($_GET['dob']);
+            $salary = htmlspecialchars($_GET['salary']);
+            $id = htmlspecialchars($_GET['id']);
             $employee->edit($id, $firstName, $lastName, $dob, $salary); //отправляем данные в бд
             header('Location: ../public/index.php');
         } else { //если данные ещё не были переданы, то загружаем рендер страницы
@@ -55,7 +55,7 @@ class EmployeeController extends \Core\Controller
         if (isset($_GET['id'])) { //если были переданы данные, то заносим их в бд
             $employee = new Employee();
 
-            $employee->delete($_GET['id']); //отправляем данные в бд
+            $employee->delete((htmlspecialchars($_GET['id']))); //отправляем данные в бд
             header('Location: ../public/index.php');
         }
 
