@@ -79,16 +79,16 @@ class Employee extends \Core\Model
     public static function setAll(string $firstName, string $lastName, string $dob, int $salary)
     {
         $dbEmployer= new Model();
-        $dbEmployer->insertDB($firstName, $lastName, $dob, $salary,'employer');
+        $dbEmployer->insertDB($firstName, $lastName, $dob, $salary,'employer','firstName', 'lastName','dob','salary');
     }
     public static function edit(int $id, string $firstName,string $lastName,string $dob,int $salary)
     {
         $dbEmployer= new Model();
-        $dbEmployer->editDB($id, $firstName, $lastName, $dob, $salary,'employer');
+        $dbEmployer->editDB($id, $firstName, $lastName, $dob, $salary,'employer','firstName', 'lastName','dob','salary','id');
     }
     public static function delete(int $id)
     {
         $dbEmployer= new Model();
-        $dbEmployer->deleteDB($id,'employer');
+        $dbEmployer->deleteDB($id,'employer','id');
     }
 }
