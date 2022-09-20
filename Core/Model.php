@@ -4,7 +4,7 @@ namespace Core;
 
 use Core\Database;
 
-abstract class Model
+class Model
 {
     public Database $db;
     /**
@@ -21,21 +21,35 @@ abstract class Model
     protected function getConnect(): Database{
         return $this->db;
     }
-    //Общие методы подходящие ко многим моделям, без привязки к самим моделям
-    public function getDB(){
-        $result=$this->db->query("SELECT * FROM ".$this->table);
+
+    public function getDB(string $table){
+        $result=$this->db->query("SELECT * FROM ".$table);
         return $result;
     }
-    public function sortAscDB(string $column){
+    public function sortAscDB(string $column, string $table){
         
-        $result = $this->db->query("SELECT * FROM `".$this->table."` ORDER BY " . $column . " ASC ");
+        $result = $this->db->query("SELECT * FROM `".$table."` ORDER BY " . $column . " ASC ");
         return $result;
     }
-    public function sortDescDB(string $column)
+    public function sortDescDB(string $column, string $table)
     {
-        $result = $this->db->query("SELECT * FROM `".$this->table."` ORDER BY " . $column . " DESC ");
+        $result = $this->db->query("SELECT * FROM `".$table."` ORDER BY " . $column . " DESC ");
         return $result;
+    }
+    public function insertDB(string $fname,string $lname,string $dob,int $salary, string $table)
+    {
+        $this->db->execute("INSERT INTO `" .$table. "` SET `firstName`='$fname', `lastName`='$lname',
+        `dob`='$dob', `salary`='$salary'");
+    }
+    public function editDB(int $id,string $fname,string $lname,string $dob,string $salary,$table)
+    {
+        $this->db->execute("UPDATE `" .$table. "` SET `firstName`='$fname', `lastName`='$lname', `dob`='$dob',
+ `salary`='$salary' WHERE `id`='$id' ");
     }
     
+    public function deleteDB(int $id,$table)
+    {
+        $this->db->execute("DELETE FROM `" .$table. "` WHERE `id`='$id'");
+    }
     
 }
