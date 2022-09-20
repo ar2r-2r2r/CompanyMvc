@@ -81,12 +81,12 @@ class Employee extends \Core\EmployeeModel
         $dbEmployer= new EmployeeModel();
         $dbEmployer->insertDB($firstName, $lastName, $dob, $salary);
     }
-    public static function edit($id, $firstName, $lastName, $dob, $salary)
+    public static function edit(int $id, string $firstName,string $lastName,string $dob,int $salary)
     {
         $dbEmployer= new EmployeeModel();
         $dbEmployer->editDB($id, $firstName, $lastName, $dob, $salary);
     }
-    public static function delete($id)
+    public static function delete(int $id)
     {
         $dbEmployer= new EmployeeModel();
         $dbEmployer->deleteDB($id);

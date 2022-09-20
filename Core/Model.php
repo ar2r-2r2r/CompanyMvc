@@ -26,11 +26,11 @@ abstract class Model
         $result=$this->db->query("SELECT * FROM ".$this->table);
         return $result;
     }
-    public function sortAscDB($column){
+    public function sortAscDB(string $column){
         $result = $this->db->query("SELECT * FROM `".$this->table."` ORDER BY " . $column . " ASC ");
         return $result;
     }
-    public function sortDescDB($column)
+    public function sortDescDB(string $column)
     {
         $result = $this->db->query("SELECT * FROM `".$this->table."` ORDER BY " . $column . " DESC ");
         return $result;

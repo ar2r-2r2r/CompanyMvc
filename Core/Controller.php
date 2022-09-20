@@ -34,7 +34,7 @@ abstract class Controller
      *
      * @return void
      */
-    public function __call($name, $args)
+    public function __call(string $name, $args)
     {
         $method = $name . 'Action';
 
