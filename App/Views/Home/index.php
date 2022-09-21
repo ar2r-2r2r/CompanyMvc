@@ -11,7 +11,7 @@
 <table>
     <tr>
         <th>
-            <a href="/php-mvc/public/index.php?sortDescByS">Ʌ</a>
+            <a href="/php-mvc/public/index.php?sortAscByFN">Ʌ</a>
             <a href="/php-mvc/public/index.php?sortDescByFN">V</a>
             first name
         </th>
