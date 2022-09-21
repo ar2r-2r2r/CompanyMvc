@@ -8,6 +8,11 @@ use \Core\View;
 class EmployeeController extends \Core\Controller
 
 {
+    
+    public function __construct()
+    {
+        $this->employee=new Employee();
+    }
 
     /**
      * Show the index page
@@ -17,15 +22,14 @@ class EmployeeController extends \Core\Controller
     public function addAction()
     {
         if (isset($_GET['firstName'])) { //если были переданы данные, то заносим их в бд
-            $employee = new Employee();
+    
             $firstName = htmlspecialchars($_GET['firstName']);
             $lastName = htmlspecialchars($_GET['lastName']);
             $dob = htmlspecialchars($_GET['dob']);
             $salary = htmlspecialchars($_GET['salary']);
-            $employee->setAll($firstName, $lastName, $dob, $salary); //отправляем данные в бд
+            $this->employee->insertAll($firstName, $lastName, $dob, $salary); //отправляем данные в бд
             header('Location: ../public/index.php');
         } else { //если данные ещё не были переданы, то загружаем рендер страницы
-            $employee = new Employee();
             View::render('Add/Add.php');
         }
     }
@@ -33,13 +37,12 @@ class EmployeeController extends \Core\Controller
     {
 
         if (isset($_GET['firstName'])) { //если были переданы данные, то заносим их в бд
-            $employee = new Employee();
             $firstName = htmlspecialchars($_GET['firstName']);
             $lastName = htmlspecialchars($_GET['lastName']);
             $dob = htmlspecialchars($_GET['dob']);
             $salary = htmlspecialchars($_GET['salary']);
             $id = htmlspecialchars($_GET['id']);
-            $employee->edit($id, $firstName, $lastName, $dob, $salary); //отправляем данные в бд
+            $this->employee->edit($id, $firstName, $lastName, $dob, $salary); //отправляем данные в бд
             header('Location: ../public/index.php');
         } else { //если данные ещё не были переданы, то загружаем рендер страницы
             $id = $_GET['id'];
@@ -53,75 +56,65 @@ class EmployeeController extends \Core\Controller
     {
 
         if (isset($_GET['id'])) { //если были переданы данные, то заносим их в бд
-            $employee = new Employee();
 
-            $employee->delete((htmlspecialchars($_GET['id']))); //отправляем данные в бд
+            $this->employee->delete((htmlspecialchars($_GET['id']))); //отправляем данные в бд
             header('Location: ../public/index.php');
         }
 
     }
     public function homeAction()
     {
-        $employee = new Employee();
         View::render('Home/index.php', [
-            'result' => $employee->getAll(),
+            'result' => $this->employee->selectAll(),
         ]);
     }
 
     public function sortAscByFNAction()
     {
-        $employee = new Employee();
         View::render('Home/index.php', [
-            'result' => $employee->sortAscByFN(),
+            'result' => $this->employee->sortAscByFN(),
         ]);
     }
     public function sortDescByFNAction()
     {
-        $employee = new Employee();
         View::render('Home/index.php', [
-            'result' => $employee->sortDescByFN(),
+            'result' => $this->employee->sortDescByFN(),
         ]);
     }
     public function sortAscByLNAction()
     {
-        $employee = new Employee();
         View::render('Home/index.php', [
-            'result' => $employee->sortAscByLN(),
+            'result' => $this->employee->sortAscByLN(),
         ]);
     }
     public function sortDescByLNAction()
     {
-        $employee = new Employee();
         View::render('Home/index.php', [
-            'result' => $employee->sortDescByLN(),
+            'result' => $this->employee->sortDescByLN(),
         ]);
     }
     public function sortAscByDOBAction()
     {
-        $employee = new Employee();
         View::render('Home/index.php', [
-            'result' => $employee->sortAscByDOB(),
+            'result' => $this->employee->sortAscByDOB(),
         ]);
     }
     public function sortDescByDOBAction()
     {
-        $employee = new Employee();
         View::render('Home/index.php', [
-            'result' => $employee->sortDescByDOB(),
+            'result' => $this->employee->sortDescByDOB(),
         ]);
     }
     public function sortAscBySAction()
     {
-        $employee = new Employee();
         View::render('Home/index.php', [
-            'result' => $employee->sortAscByS(),
+            'result' => $this->employee->sortAscByS(),
         ]);
     }
     public function sortDescBySAction()
     {
-        $employee = new Employee();
         View::render('Home/index.php', [
-            'result' => $employee->sortDescByS(),
+            'result' => $this->employee->sortDescByS(),
         ]);
     }
 }

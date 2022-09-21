@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Core\Model;
 
-// class Employee extends \Core\Model;
 class Employee extends \Core\Model
 
 {
@@ -14,81 +13,82 @@ class Employee extends \Core\Model
     protected string $lastName;
     protected string $dob;
     protected int $salary;
-    protected string $tableName='firstName';
+    protected $dbEmployer;
+    protected string $table='employer';
     /**
      * Get all the users as an associative array
      *
      * @return array
      */
-    public static function getAll()
+
+    public function __construct()
     {
-        $dbEmployer= new Model();
-        $result = $dbEmployer->getDB('employer');
+        $this->dbEmployer=new Model();
+    }
+
+    public function selectAll()
+    {
+        $result=$this->dbEmployer->db->query("SELECT * FROM ".$this->table." ");
         return $result;
     }
-    public static function sortAscByFN()
+    public function insertAll(string $firstName, string $lastName, string $dob, int $salary)
     {
-        $dbEmployer= new Model();
-        $result = $dbEmployer->sortAscDB('firstName', 'employer');
+        $this->dbEmployer->db->execute("INSERT INTO `" .$this->table. "` SET `firstName`='$firstName', `lastName`='$lastName',
+        `dob`='$dob', `salary`='$salary'");
+    }
+
+    public function edit(int $id, string $firstName,string $lastName,string $dob,int $salary)
+    {
+        $this->dbEmployer->db->execute("UPDATE `" .$this->table. "` SET `firstName`='$firstName', `lastName`='$lastName', `dob`='$dob',
+        `salary`='$salary' WHERE `id`='$id' ");
+    }
+    public function delete(int $id)
+    {
+        $this->dbEmployer->db->execute("DELETE FROM `" .$this->table. "` WHERE `id`='$id'");
+    }
+
+
+    public function sortAscByFN()
+    {
+        
+        $result = $this->dbEmployer->sortAscDB('firstName', 'employer');
         return $result;
     }
-    public static function sortDescByFN()
+    public function sortDescByFN()
     {
-        $dbEmployer= new Model();
-        $result = $dbEmployer->sortDescDB('firstName','employer');
+        
+        $result = $this->dbEmployer->sortDescDB('firstName','employer');
         return $result;
     }
-    public static function sortAscByLN()
+    public function sortAscByLN()
     {
-        $dbEmployer= new Model();
-        $result = $dbEmployer->sortAscDB('lastName','employer');
+        $result = $this->dbEmployer->sortAscDB('lastName','employer');
         return $result;
     }
-    public static function sortDescByLN()
+    public function sortDescByLN()
     {
-        $dbEmployer= new Model();
-        $result = $dbEmployer->sortDescDB('lastName','employer');
+        $result = $this->dbEmployer->sortDescDB('lastName','employer');
         return $result;
     }
     //sorts
-    public static function sortAscByDOB()
+    public function sortAscByDOB()
     {
-        $dbEmployer= new Model();
-        $result = $dbEmployer->sortAscDB('dob','employer','employer');
+        $result = $this->dbEmployer->sortAscDB('dob','employer','employer');
         return $result;
     }
-    public static function sortDescByDOB()
+    public function sortDescByDOB()
     {
-        $dbEmployer= new Model();
-        $result = $dbEmployer->sortDescDB('dob','employer','employer');
+        $result = $this->dbEmployer->sortDescDB('dob','employer','employer');
         return $result;
     }
-    public static function sortAscByS()
+    public function sortAscByS()
     {
-        $dbEmployer= new Model();
-        $result = $dbEmployer->sortAscDB('salary','employer','employer');
+        $result = $this->dbEmployer->sortAscDB('salary','employer','employer');
         return $result;
     }
-    public static function sortDescByS()
+    public function sortDescByS()
     {
-        $dbEmployer= new Model();
-        $result = $dbEmployer->sortDescDB('salary','employer','employer');
+        $result = $this->dbEmployer->sortDescDB('salary','employer','employer');
         return $result;
-    }
-
-    public static function setAll(string $firstName, string $lastName, string $dob, int $salary)
-    {
-        $dbEmployer= new Model();
-        $dbEmployer->insertDB($firstName, $lastName, $dob, $salary,'employer','firstName', 'lastName','dob','salary');
-    }
-    public static function edit(int $id, string $firstName,string $lastName,string $dob,int $salary)
-    {
-        $dbEmployer= new Model();
-        $dbEmployer->editDB($id, $firstName, $lastName, $dob, $salary,'employer','firstName', 'lastName','dob','salary','id');
-    }
-    public static function delete(int $id)
-    {
-        $dbEmployer= new Model();
-        $dbEmployer->deleteDB($id,'employer','id');
     }
 }
