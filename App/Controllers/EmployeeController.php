@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Employee;
+use App\Models\EmployeeModel;
 use \Core\View;
 
 class EmployeeController extends \Core\Controller
@@ -11,7 +12,7 @@ class EmployeeController extends \Core\Controller
     
     public function __construct()
     {
-        $this->employee=new Employee();
+        $this->employee=new EmployeeModel();
     }
 
     /**
