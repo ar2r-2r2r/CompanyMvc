@@ -4,15 +4,10 @@ namespace App\Models;
 
 use Core\Model;
 
-class Employee extends \Core\Model
+class EmployeeModel extends \Core\Model
 
 {
 
-    protected int $id;
-    protected string $firstName;
-    protected string $lastName;
-    protected string $dob;
-    protected int $salary;
     protected $dbEmployer;
     protected string $table='employer';
     /**
