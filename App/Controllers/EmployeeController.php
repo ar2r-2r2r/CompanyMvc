@@ -27,7 +27,7 @@ class EmployeeController extends \Core\Controller
             $lastName = htmlspecialchars($_GET['lastName']);
             $dob = htmlspecialchars($_GET['dob']);
             $salary = htmlspecialchars($_GET['salary']);
-            $this->employee->setAll($firstName, $lastName, $dob, $salary); //отправляем данные в бд
+            $this->employee->insertAll($firstName, $lastName, $dob, $salary); //отправляем данные в бд
             header('Location: ../public/index.php');
         } else { //если данные ещё не были переданы, то загружаем рендер страницы
             View::render('Add/Add.php');
@@ -65,7 +65,7 @@ class EmployeeController extends \Core\Controller
     public function homeAction()
     {
         View::render('Home/index.php', [
-            'result' => $this->employee->getAll(),
+            'result' => $this->employee->selectAll(),
         ]);
     }
 

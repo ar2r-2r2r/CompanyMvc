@@ -26,12 +26,12 @@ class Employee extends \Core\Model
         $this->dbEmployer=new Model();
     }
 
-    public function getAll()
+    public function selectAll()
     {
         $result=$this->dbEmployer->db->query("SELECT * FROM ".$this->table." ");
         return $result;
     }
-    public function setAll(string $firstName, string $lastName, string $dob, int $salary)
+    public function insertAll(string $firstName, string $lastName, string $dob, int $salary)
     {
         $this->dbEmployer->db->execute("INSERT INTO `" .$this->table. "` SET `firstName`='$firstName', `lastName`='$lastName',
         `dob`='$dob', `salary`='$salary'");
