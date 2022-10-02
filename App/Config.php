@@ -9,7 +9,7 @@ class Config
      * Database host
      * @var string
      */
-    const DB_HOST = 'localhost';
+    const DB_HOST = 'mysql';
 
     /**
      * Database name
@@ -27,7 +27,7 @@ class Config
      * Database password
      * @var string
      */
-    const DB_PASSWORD = '';
+    const DB_PASSWORD = 'root';
 
     /**
      * Show or hide error messages on screen
