@@ -19,6 +19,16 @@ class EmployeeModel extends \Core\Model
     public function __construct()
     {
         $this->dbEmployer=new Model();
+        
+            $this->dbEmployer->db->execute("CREATE TABLE IF NOT EXISTS employer (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                firstName VARCHAR(30) NOT NULL,
+                lastName VARCHAR(30) NOT NULL,
+                dob date,
+                salary int
+            )
+            ");
+        
     }
 
     public function selectAll()
